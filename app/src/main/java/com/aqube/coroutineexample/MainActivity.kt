@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
             val originalDeferred = coroutineScope.async(Dispatchers.IO) { getOriginalBitmap() }
             val originalBitmap = originalDeferred.await()
             loadImage(originalBitmap)
-            val originalDeferredBnW = coroutineScope.async { filterBitmap(originalBitmap) }
+            val originalDeferredBnW = coroutineScope.async { applyFilter(originalBitmap) }
             loadImageBnW(originalDeferredBnW.await())
         }
     }
@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
     private fun getOriginalBitmap() =
         URL(IMAGE_URL).openStream().use { BitmapFactory.decodeStream(it) }
 
-    private fun filterBitmap(bitmap: Bitmap) = Filter.apply(bitmap)
+    private fun applyFilter(bitmap: Bitmap) = Filter.apply(bitmap)
 
     private fun loadImage(bitmap: Bitmap) {
         imageView.apply {
