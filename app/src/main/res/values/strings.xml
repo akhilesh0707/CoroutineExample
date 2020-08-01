@@ -9,4 +9,5 @@
     <string name="sign_in_as">You are now signed in as</string>
     <string name="log_out">LOG OUT</string>
     <string name="delete_user">DELETE USER</string>
+    <string name="home">HOME</string>
 </resources>

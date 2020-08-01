@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/signupFragment"
         android:name="com.aqube.coroutineexample.ui.signup.SignUpFragment"
-        android:label="fragment_signup"
+        android:label="@string/sign_up"
         tools:layout="@layout/fragment_signup">
         <action
             android:id="@+id/actionGoToHome"
@@ -19,7 +19,7 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.aqube.coroutineexample.ui.login.LoginFragment"
-        android:label="fragment_login"
+        android:label="@string/login"
         tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/actionGoToHome"
@@ -31,7 +31,7 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.aqube.coroutineexample.ui.home.HomeFragment"
-        android:label="fragment_main"
+        android:label="@string/home"
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/actionGoToSignup"
