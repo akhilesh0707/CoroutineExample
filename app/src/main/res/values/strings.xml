@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">CoroutineExample</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="other_info">Other info</string>
+    <string name="sign_up">SIGNUP</string>
+    <string name="login">LOGIN</string>
+    <string name="address">Address</string>
+    <string name="sign_in_as">You are now signed in as</string>
+    <string name="log_out">LOG OUT</string>
+    <string name="delete_user">DELETE USER</string>
 </resources>
