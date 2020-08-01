@@ -3,8 +3,15 @@ package com.aqube.coroutineexample.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.aqube.coroutineexample.model.Country
+import com.aqube.coroutineexample.network.CountryService
+import kotlinx.coroutines.*
 
 class ListViewModel : ViewModel() {
+    private val countryService = CountryService.getCountryService()
+    private var job: Job? = null
+    private val exceptionHandler = CoroutineExceptionHandler { coroutineContext, throwable ->
+        onError("Exception: ${throwable.localizedMessage}")
+    }
     val countries = MutableLiveData<List<Country>>()
     val error = MutableLiveData<String?>()
     val loading = MutableLiveData<Boolean>()
@@ -15,18 +22,18 @@ class ListViewModel : ViewModel() {
 
     private fun fetchCountries() {
         loading.value = true
-        val dummyData = generateDummyDataCountries()
-        countries.value = dummyData
-        loading.value = false
-    }
-
-    private fun generateDummyDataCountries(): List<Country> {
-        val countries = arrayListOf<Country>()
-        countries.add(Country("1", "2222", ""))
-        countries.add(Country("2", "2222", ""))
-        countries.add(Country("3", "2222", ""))
-        countries.add(Country("4", "2222", ""))
-        return countries
+        job = CoroutineScope(Dispatchers.IO + exceptionHandler).launch {
+            val response = countryService.getCountryList()
+            withContext(Dispatchers.Main) {
+                if (response.isSuccessful) {
+                    countries.value = response.body()
+                    error.value = null
+                    loading.value = false
+                } else {
+                    onError("Error: ${response.errorBody()}")
+                }
+            }
+        }
     }
 
     private fun onError(message: String) {
@@ -34,4 +41,8 @@ class ListViewModel : ViewModel() {
         loading.value = false
     }
 
+    override fun onCleared() {
+        super.onCleared()
+        job?.cancel()
+    }
 }

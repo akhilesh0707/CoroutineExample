@@ -15,8 +15,9 @@ class CountryAdapter(private val interaction: Interaction? = null) :
     ListAdapter<Country, CountryAdapter.CountryViewHolder>(CountryDC()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = CountryViewHolder(
-        LayoutInflater.from(parent.context).inflate(R.layout.item_country, parent, false),
-        interaction
+        LayoutInflater
+            .from(parent.context)
+            .inflate(R.layout.item_country, parent, false), interaction
     )
 
     override fun onBindViewHolder(holder: CountryViewHolder, position: Int) =
@@ -41,11 +42,8 @@ class CountryAdapter(private val interaction: Interaction? = null) :
         fun bind(item: Country) = with(itemView) {
             textViewCountry.text = item.countryName
             textViewCapital.text = item.capital
+            imageView.loadImage(item.flag)
         }
-    }
-
-    interface Interaction {
-        fun countrySelected(model: Country)
     }
 
     private class CountryDC : DiffUtil.ItemCallback<Country>() {
@@ -54,4 +52,9 @@ class CountryAdapter(private val interaction: Interaction? = null) :
 
         override fun areContentsTheSame(oldItem: Country, newItem: Country) = oldItem == newItem
     }
+
+    interface Interaction {
+        fun countrySelected(model: Country)
+    }
+    
 }

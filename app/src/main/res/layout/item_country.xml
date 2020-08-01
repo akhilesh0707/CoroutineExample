@@ -9,13 +9,16 @@
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_height="wrap_content"
         android:contentDescription="@string/app_name"
+        android:scaleType="fitCenter"
+        android:src="@mipmap/ic_launcher"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textViewCountry"
+        style="@style/Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/default_padding"
@@ -26,9 +29,10 @@
 
     <TextView
         android:id="@+id/textViewCapital"
+        style="@style/Text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/default_padding"
+        android:layout_marginTop="@dimen/padding_5"
         app:layout_constraintStart_toStartOf="@+id/textViewCountry"
         app:layout_constraintTop_toBottomOf="@+id/textViewCountry"
         tools:text="Capital" />
