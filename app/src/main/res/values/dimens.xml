@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="default_padding">16dp</dimen>
+    <dimen name="padding_5">5dp</dimen>
+    <!-- List style -->
+    <dimen name="card_elevation">6sp</dimen>
+    <dimen name="card_margin">8sp</dimen>
+    <dimen name="normal_padding">10sp</dimen>
+    <dimen name="textview_size_normal">14sp</dimen>
+    <dimen name="image_size">180sp</dimen>
+    <dimen name="textview_size_small">12sp</dimen>
+</resources>

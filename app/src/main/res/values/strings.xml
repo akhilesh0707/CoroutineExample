@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">CoroutineExample</string>
+    <string name="news_image">New image</string>
 </resources>
