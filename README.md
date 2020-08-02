@@ -14,7 +14,7 @@ Created multiple branches based on funtionality
 
 3. Room database CRUD operation with coroutines 
 
-<img src="https://github.com/akhilesh0707/CoroutineExample/blob/master/previews/room_1.png" width="300"> <img src="https://github.com/akhilesh0707/CoroutineExample/blob/master/previews/room2.png" width="300"> <img src="https://github.com/akhilesh0707/CoroutineExample/blob/master/previews/room3.png" width="300">
+<img src="https://github.com/akhilesh0707/CoroutineExample/blob/master/previews/room_1.png" width="250"> <img src="https://github.com/akhilesh0707/CoroutineExample/blob/master/previews/room2.png" width="250"> <img src="https://github.com/akhilesh0707/CoroutineExample/blob/master/previews/room3.png" width="250">
 
 4. Asynchronous Flow example create, properties,cancellation, operators, buffering, composing and exception handling 
 
