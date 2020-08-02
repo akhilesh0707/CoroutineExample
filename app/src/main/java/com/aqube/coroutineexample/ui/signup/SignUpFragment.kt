@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.fragment_signup.*
 
 class SignUpFragment : Fragment() {
 
-    private lateinit var viewModel: SignupViewModel
+    private lateinit var viewModel: SignUpViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,7 +28,7 @@ class SignUpFragment : Fragment() {
         buttonSignUp.setOnClickListener { onSignUp() }
         buttonLogin.setOnClickListener { onGotoLogin(it) }
 
-        viewModel = ViewModelProviders.of(this).get(SignupViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(SignUpViewModel::class.java)
         observeViewModel()
     }
 

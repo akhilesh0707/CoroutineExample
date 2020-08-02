@@ -8,11 +8,11 @@ import com.aqube.coroutineexample.data.User
 import com.aqube.coroutineexample.data.UserDatabase
 import kotlinx.coroutines.*
 
-class SignupViewModel(application: Application) : AndroidViewModel(application) {
+class SignUpViewModel(application: Application) : AndroidViewModel(application) {
 
-    val coroutineScope = CoroutineScope(Dispatchers.IO)
-    var job: Job? = null
-    val db by lazy { UserDatabase(application).userDao() }
+    private val coroutineScope = CoroutineScope(Dispatchers.IO)
+    private var job: Job? = null
+    private val db by lazy { UserDatabase(application).userDao() }
     val signUpComplete = MutableLiveData<Boolean>()
     val error = MutableLiveData<String>()
 
