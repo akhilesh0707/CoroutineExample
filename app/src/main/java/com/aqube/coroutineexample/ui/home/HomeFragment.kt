@@ -1,5 +1,6 @@
 package com.aqube.coroutineexample.ui.home
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import com.aqube.coroutineexample.R
+import com.aqube.coroutineexample.data.LoginState
+import com.aqube.coroutineexample.util.showToastShort
 import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment() {
@@ -25,6 +28,8 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        textViewUsername.text = LoginState.user?.username
+
         buttonLogout.setOnClickListener { onLogout() }
         buttonDeleteUser.setOnClickListener { onDelete() }
 
@@ -34,20 +39,33 @@ class HomeFragment : Fragment() {
 
     private fun observeViewModel() {
         viewModel.logout.observe(viewLifecycleOwner, Observer {
-
+            context?.showToastShort("Logged out")
+            goToSignUpScreen()
         })
         viewModel.userDeleted.observe(viewLifecycleOwner, Observer {
-
+            context?.showToastShort("User deleted")
+            goToSignUpScreen()
         })
+    }
+
+    private fun goToSignUpScreen() {
+        val action = HomeFragmentDirections.actionGoToSignup()
+        Navigation.findNavController(textViewUsername).navigate(action)
     }
 
     private fun onLogout() {
-        val action = HomeFragmentDirections.actionGoToSignup()
-        Navigation.findNavController(textViewUsername).navigate(action)
+        viewModel.onLogout()
     }
 
     private fun onDelete() {
-        val action = HomeFragmentDirections.actionGoToSignup()
-        Navigation.findNavController(textViewUsername).navigate(action)
+        activity?.let {
+            AlertDialog.Builder(it)
+                .setTitle("Delete user")
+                .setMessage("Are you sure you want to delete user")
+                .setPositiveButton("Yes") { _, _ -> viewModel.onDeleteUser() }
+                .setNegativeButton("Cancel", null)
+                .create()
+                .show()
+        }
     }
 }
